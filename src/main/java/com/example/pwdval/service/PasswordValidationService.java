@@ -29,13 +29,17 @@ public class PasswordValidationService {
 		final String password = map.get(PASSWORD);
 
 		if (password == null) {
-			throw new MandatoryParamException("Password cannot be null or empty.");
+			if (validatePassword2 == null) {
+				throw new MandatoryParamException("Password cannot be null or empty.");
+			}
 		} else {
 			count++;
 		}
 
 		if (password.length() <= 8) {
-			throw new ResourceFormatException("Password should be greater than 8 characters.");
+			if (validatePassword2 == null) {
+				throw new ResourceFormatException("Password should be greater than 8 characters.");
+			}
 		} else {
 			count++;
 		}
@@ -43,20 +47,28 @@ public class PasswordValidationService {
 		if (isMatched(password, UPPER_CASE_REGEX)) {
 			count++;
 		} else {
-			throw new BadRequestException("Password should contain atleast one upper case character.");
+			if (validatePassword2 == null) {
+				throw new BadRequestException("Password should contain atleast one upper case character.");
+			}
 		}
 
-		if (isMatched(password, LOWER_CASE_REGEX) && (validatePassword2 == null || validatePassword2 != null && count < 3)) {
+		if (isMatched(password, LOWER_CASE_REGEX)
+				&& (validatePassword2 == null || validatePassword2 != null && count < 3)) {
 			response.setIsContainsLowerCase(true);
 			count++;
 		} else {
-			throw new BadRequestException("Password should contain atleast one lower case character.");
+			if (validatePassword2 == null) {
+				throw new BadRequestException("Password should contain atleast one lower case character.");
+			}
 		}
 
-		if (isMatched(password, NUMBER_REGEX) && (validatePassword2 == null || validatePassword2 != null && count < 3)) {
+		if (isMatched(password, NUMBER_REGEX)
+				&& (validatePassword2 == null || validatePassword2 != null && count < 3)) {
 			count++;
 		} else {
-			throw new BadRequestException("Password should contain atleast one number.");
+			if (validatePassword2 == null) {
+				throw new BadRequestException("Password should contain atleast one number.");
+			}
 		}
 		response.setCount(count);
 		return response;
