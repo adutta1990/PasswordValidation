@@ -31,6 +31,7 @@ public class PasswordValidationApplicationTests {
 
 		try {
 			pwdValidationService.validatePassword(password, null);
+			assertEquals(true, false);
 		} catch (Exception ex) {
 			assertEquals(true, true);
 		}
@@ -44,6 +45,7 @@ public class PasswordValidationApplicationTests {
 
 		try {
 			pwdValidationService.validatePassword(password, null);
+			assertEquals(true, false);
 		} catch (Exception ex) {
 			assertEquals(true, true);
 		}
@@ -57,6 +59,7 @@ public class PasswordValidationApplicationTests {
 
 		try {
 			pwdValidationService.validatePassword(password, null);
+			assertEquals(true, false);
 		} catch (Exception ex) {
 			assertEquals(true, true);
 		}
@@ -82,6 +85,7 @@ public class PasswordValidationApplicationTests {
 
 		try {
 			pwdValidationService.validatePassword(password, null);
+			assertEquals(true, false);
 
 		} catch (Exception ex) {
 			assertEquals(true, true);
@@ -97,6 +101,7 @@ public class PasswordValidationApplicationTests {
 
 		try {
 			pwdValidationService.validatePassword(password, null);
+			assertEquals(true, false);
 		} catch (Exception ex) {
 			assertEquals(true, true);
 		}
